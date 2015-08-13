@@ -1,0 +1,25 @@
+body{
+    background-color: white;
+    font-family: serif;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#jsonTable {
+    width: 100%;
+    background-color: white;
+    min-width: 100%;
+    position: relative;
+    opacity: 0.97;
+}
+
+#divt{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-height: 500px;
+    overflow: scroll; 
+    overflow-x: no-display; 
+    overflow-y: no-display;
+
+}

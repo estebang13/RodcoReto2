@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+            $.ajax({
+                type: 'Get',
+                url: 'http://sheltered-hollows-7317.herokuapp.com:80/api/orchards',
+                success: function (data) {
+                    var columns = addAllColumnHeaders(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var row$ = $('<tr/>');
+                        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                            var cellValue = data[i][columns[colIndex]];
+                            if (cellValue === null) {
+                                cellValue = "";
+                            }
+                            row$.append($('<td/>').html(cellValue));
+                        }
+                        $("#jsonTable").append(row$);
+                    }
+                }
+
+            })
+
+            function addAllColumnHeaders(myList) {
+                var columnSet = [];
+                var headerTr$ = $('<tr/>');
+                for (var i = 0; i < myList.length; i++) {
+                    var rowHash = myList[i];
+                    for (var key in rowHash) {
+                        if ($.inArray(key, columnSet) === -1) {
+                            columnSet.push(key);
+                            headerTr$.append($('<th/>').html(key));
+                        }
+                    }
+                }
+                $("#jsonTable").append(headerTr$);
+                return columnSet;
+            }
+        </script>
+    </head>
+    <header>
+        <img src="img/rodc.png" alt=""/>
+    </header>
+
+    <body>
+        <div id="divt" style="">
+            <div class="table-responsive">
+                <table class="table table-hover" id="jsonTable" border="1" background="white">
+                </table>
+            </div>
+        </div> 
+
+    </body>
+
+</html>
